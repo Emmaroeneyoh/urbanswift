@@ -7,7 +7,10 @@ const admin_rate_schema = new schema({
         },
         road_security_rating: {
             type:Number, default : 0
-        },
+    },
+    road_network_rating: {
+        type:Number, default : 0
+    },
         estimated_destination_hours: {
             type:Number, default : 0
         },

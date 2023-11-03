@@ -10,7 +10,7 @@ const createrouteController = async (req, res, next) => {
   const { route } = req.body;
   const routename = route.toLowerCase();
   try {
-    const route = await RouteModel.findOne({ name: routename });
+    const route = await RouteModel.findOne({ route_destination: routename });
     if (route) {
       return res.status(400).json({
         status_code: 400,

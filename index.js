@@ -12,6 +12,7 @@ const userauth = require('./user/route/auth')
 
 //admin
 const adminauth = require('./admin/route/auth')
+const adminrate = require('./admin/route/rate')
 
 //general
 // addmin 
@@ -32,6 +33,7 @@ app.use(user, userauth)
 
 //admin
 app.use(admin, adminauth) 
+app.use(admin, adminrate) 
 
 //general
 app.use(admin , admingeneral)

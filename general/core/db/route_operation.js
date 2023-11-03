@@ -4,7 +4,8 @@ const schema = mongoose.Schema
 const Operationschema = new schema({
         car_price: {
             type:Number, default : 0
-        },
+    },
+    
         seater_16_price: {
             type:Number, default : 0
         },

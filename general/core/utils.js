@@ -5,7 +5,10 @@ const userpasswordjwt = process.env.userpasswordjwt;
 const adminJWT = process.env.adminJWT;
 const adminpasswordjwt = process.env.adminpasswordjwt;
 const appPassword = process.env.appPassword;
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { admin_rateModel } = require('./db/admin_rate');
+const { Route_rateModel } = require('./db/route_rate');
+const { user_rateModel } = require('./db/user_rate');
 
 
 const base = 'mongodb+srv://emmaro:1234@tutorial.klpqo.mongodb.net/urbanswift?retryWrites=true&w=majority'
@@ -26,11 +29,12 @@ const handleError = (err) => res => {
   });
 }
 
+
 module.exports = {
   base_url,
   PORT,
   userjwt,
   userpasswordjwt,
   adminJWT , adminpasswordjwt ,
-  appPassword, coonectdb , handleError
+  appPassword, coonectdb , handleError 
 };
