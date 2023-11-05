@@ -1,4 +1,5 @@
 const { AssetModel } = require("../../core/db/asset");
+const { TransitModel } = require("../../core/db/transit");
 
 
 
@@ -51,7 +52,14 @@ const updateassetModel = async (data, res) => {
           }
       });
      
-     
+      //update transit 
+      await TransitModel.findByIdAndUpdate(transitid, {
+        $set : {
+          asset : true
+           
+        }
+    });
+   
   
       return form;
     } catch (error) {

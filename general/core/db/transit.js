@@ -6,6 +6,9 @@ const Transitschema = new schema({
         name: {
             type:String,
         },
+        asset: {
+            type:Boolean, default : false
+        },
         address:{
             type:String
         },
@@ -35,7 +38,7 @@ const Transitschema = new schema({
             },
         },
         
- 
+       
     agency: {
         default: [],
         type: [
