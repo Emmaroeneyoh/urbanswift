@@ -21,7 +21,15 @@ const createassetModel = async (data, res) => {
          
       });
      
-      const userDetails = await form.save()
+        const userDetails = await form.save()
+        
+            //update transit 
+            console.log(transitid)
+            const updatetransit =    await TransitModel.findByIdAndUpdate(transitid, {
+                 $set : {
+                   asset : true
+                 }
+             });
      
   
       return userDetails;
@@ -52,13 +60,7 @@ const updateassetModel = async (data, res) => {
           }
       });
      
-      //update transit 
-      await TransitModel.findByIdAndUpdate(transitid, {
-        $set : {
-          asset : true
-           
-        }
-    });
+  
    
   
       return form;
