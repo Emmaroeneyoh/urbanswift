@@ -8,7 +8,7 @@ const {
 
 
 const createAgencyController = async (req, res, next) => {
-  const { name, ceo, establishment_date, headquarter } = req.body;
+  const { name, ceo, establishment_date, headquarter , ownership } = req.body;
   const agencyname = name.toLowerCase();
   try {
     const agency = await AgencyModel.findOne({ name: agencyname });
@@ -26,7 +26,7 @@ const createAgencyController = async (req, res, next) => {
       ceo,
       establishment_date,
       headquarter,
-      agencyname,
+      agencyname, ownership
     };
 
     let trainee = await createAgencyModel(data, res);
@@ -39,7 +39,7 @@ const createAgencyController = async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
-    handleError(error.message)(res);
+    // handleError(error.message)(res);
   }
 };
 
@@ -109,12 +109,13 @@ const retrieveallAgencyController = async (req, res, next) => {
 
 
 const updateAgencyController = async (req, res, next) => {
-  const { name, ceo, establishment_date, headquarter, agencyid } = req.body;
+  const { name, ceo, establishment_date, headquarter, agencyid , ownership } = req.body;
   const agencyname = name.toLowerCase();
   try {
     const agency = await AgencyModel.findOne({ name: agencyname });
+    const catid = agency._id.toHexString();
       if (agency) {
-        if (agency._id !== agencyid) {
+        if (catid !== agencyid) {
             return res.status(400).json({
               status_code: 400,
               status: false,
@@ -130,7 +131,7 @@ const updateAgencyController = async (req, res, next) => {
       establishment_date,
       headquarter,
       agencyname,
-      agencyid,
+      agencyid,  ownership
     };
 
     let trainee = await updateAgencyModel(data, res);

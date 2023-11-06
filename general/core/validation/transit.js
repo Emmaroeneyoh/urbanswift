@@ -15,6 +15,7 @@ const createtransitValidation = (req, res, next) => {
     agency: joi.array().required(),
     image: joi.array().required(),
     establishment_date: joi.string().required(),
+    ownership: joi.string().required(),
   });
   const { error } = schema.validate(req.body);
   if (error) {
@@ -38,6 +39,7 @@ const updatetransitValidation = (req, res, next) => {
     stop_time: joi.string().required(),
     transitid: joi.string().required(),
     establishment_date: joi.string().required(),
+    ownership: joi.string().required(),
   });
   const { error } = schema.validate(req.body);
   if (error) {

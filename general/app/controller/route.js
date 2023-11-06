@@ -108,8 +108,9 @@ const updaterouteController = async (req, res, next) => {
     const routename = route.toLowerCase();
     try {
       const agency = await RouteModel.findOne({ route_destination: routename });
+      const catid = agency._id.toHexString();
         if (agency) {
-          if (agency._id !== routeid) {
+          if (catid !== routeid) {
               return res.status(400).json({
                 status_code: 400,
                 status: false,

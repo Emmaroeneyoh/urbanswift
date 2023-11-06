@@ -4,7 +4,10 @@ const schema = mongoose.Schema
 const Agencyschema = new schema({
         name: {
             type:String,
-        },
+    },
+    ownership: {
+        type:String,
+    },
         ceo:{
             type:String
         },

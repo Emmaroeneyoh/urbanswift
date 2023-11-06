@@ -9,6 +9,7 @@ const createagencyValidation = (req, res, next) => {
       ceo: joi.string().required(),
       establishment_date: joi.string().required(),
       headquarter: joi.string().required(),
+      ownership: joi.string().required(),
     });
     const { error } = schema.validate(req.body);
     if (error) {
@@ -27,6 +28,7 @@ const updateagencyValidation = (req, res, next) => {
       establishment_date: joi.string().required(),
       headquarter: joi.string().required(),
       agencyid: joi.string().required(),
+      ownership: joi.string().required(),
     });
     const { error } = schema.validate(req.body);
     if (error) {

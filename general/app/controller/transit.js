@@ -23,7 +23,7 @@ const createTransitController = async (req, res, next) => {
     stop_day,
     start_day,
     agency,
-    image,
+    image, ownership
   } = req.body;
   const transitname = name.toLowerCase();
   try {
@@ -49,7 +49,7 @@ const createTransitController = async (req, res, next) => {
       stop_day,
       start_day,
       agency,
-      image,
+      image,ownership
     };
     console.log("setp2");
     let trainee = await createtransitModel(data, res);
@@ -77,13 +77,14 @@ const updatetransitController = async (req, res, next) => {
     stop_time,
     stop_day,
     start_day,
-    transitid,
+    transitid, ownership
   } = req.body;
   const transitname = name.toLowerCase();
   try {
     const transit = await TransitModel.findOne({ name: transitname });
+    const catid = transit._id.toHexString();
     if (transit) {
-      if (transit._id !== transitid) {
+      if (catid !== transitid) {
         return res.status(400).json({
           status_code: 400,
           status: false,
@@ -104,7 +105,7 @@ const updatetransitController = async (req, res, next) => {
       start_time,
       stop_time,
       stop_day,
-      start_day,
+      start_day, ownership
     };
 
     let trainee = await updatetransitModel(data, res);

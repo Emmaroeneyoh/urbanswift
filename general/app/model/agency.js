@@ -5,10 +5,10 @@ const { AgencyModel } = require("../../core/db/agency");
 const createAgencyModel = async (data, res) => {
     try {
       const {
-        ceo , establishment_date , headquarter  , agencyname
+        ceo , establishment_date , headquarter  , agencyname , ownership
       } = data;
       const form = await new AgencyModel ({
-          name: agencyname ,   ceo , establishment_date , headquarter  ,
+          name: agencyname ,   ceo , establishment_date , headquarter  , ownership
          
       });
      
@@ -27,11 +27,11 @@ const createAgencyModel = async (data, res) => {
 const updateAgencyModel = async (data, res) => {
     try {
       const {
-        ceo , establishment_date , headquarter  , agencyname , agencyid
+        ceo , establishment_date , headquarter  , agencyname , agencyid , ownership
       } = data;
         const form = await AgencyModel.findByIdAndUpdate(agencyid, {
             $set: {
-                name: agencyname ,   ceo , establishment_date , headquarter  
+                name: agencyname ,   ceo , establishment_date , headquarter  , ownership 
           }
       })
       return form;

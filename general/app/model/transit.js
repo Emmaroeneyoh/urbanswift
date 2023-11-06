@@ -13,12 +13,12 @@ const createtransitModel = async (data, res) => {
       stop_day,
       start_day,
       agency,
-      image,
+      image,  ownership
     } = data;
     console.log(agency)
     const form = await new TransitModel({
       name: transitname,
-      address,
+      address, ownership ,
       latitude,
       establishment_date,
       longitude,
@@ -55,12 +55,12 @@ const updatetransitModel = async (data, res) => {
       stop_time,
       stop_day,
       start_day,
-      transitid,
+      transitid, ownership
     } = data;
     const form = await TransitModel.findByIdAndUpdate(transitid, {
       $set: {
         name: transitname,
-        address,
+        address, ownership ,
         latitude,
         longitude,
         establishment_date,
@@ -108,6 +108,7 @@ const transitremoveagencyModel = async (data, res) => {
     return error.message;
   }
 };
+
 const transitaddimageModel = async (data, res) => {
   try {
     const { url, transitid } = data;

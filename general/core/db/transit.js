@@ -8,7 +8,10 @@ const Transitschema = new schema({
         },
         asset: {
             type:Boolean, default : false
-        },
+    },
+    ownership: {
+        type:String,
+    },
         address:{
             type:String
         },
