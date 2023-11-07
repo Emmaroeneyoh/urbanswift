@@ -12,7 +12,16 @@ const sub_routeschema = new schema({
         routeid: {
             type:  mongoose.Schema.Types.ObjectId,
              ref:'Route'
-        },
+    },
+    road_network_rating: {
+        type:Number, default : 0
+    },
+    road_security_rating: {
+        type:Number, default : 0
+    },
+    estimated_destination_hours: {
+        type:Number, default : 0
+    },
     createdAt : {
         type: Date,
         default:Date.now

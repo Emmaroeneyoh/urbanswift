@@ -9,6 +9,7 @@ const app = express();
 
 //user 
 const userauth = require('./user/route/auth')
+const userindex = require('./user/route/index')
 
 //admin
 const adminauth = require('./admin/route/auth')
@@ -30,6 +31,7 @@ const admin = '/admin'
 
 //user 
 app.use(user, userauth)
+app.use(user, userindex)
 
 //admin
 app.use(admin, adminauth) 

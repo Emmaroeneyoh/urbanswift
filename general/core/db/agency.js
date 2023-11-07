@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
+
 const Agencyschema = new schema({
         name: {
             type:String,
@@ -9,6 +10,9 @@ const Agencyschema = new schema({
         type:String,
     },
         ceo:{
+            type:String
+        },
+        image:{
             type:String
         },
         headquarter:{
@@ -22,6 +26,7 @@ const Agencyschema = new schema({
         default:Date.now
     }
 })
+Agencyschema.index({name: 'text'});
 const AgencyModel = mongoose.model('Agency', Agencyschema )
 module.exports = {
     AgencyModel

@@ -68,6 +68,7 @@ const Transitschema = new schema({
         default:Date.now
     }
 })
+Transitschema.index({name: 'text'});
 const TransitModel = mongoose.model('Transit', Transitschema )
 module.exports = {
     TransitModel
