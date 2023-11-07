@@ -6,8 +6,10 @@ const {
 } = require("../model/agency");
 
 const userretrieveallagencyController = async (req, res, next) => {
-  try {
-    let trainee = await AgencyModel.find();
+    try {
+        const page = req.page || 1; 
+        const perPage = 10;
+    let trainee = await AgencyModel.find().skip((page - 1) * perPage) 
     return res.status(200).json({
       status_code: 200,
       status: true,

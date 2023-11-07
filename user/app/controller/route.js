@@ -3,8 +3,10 @@ const { handleError } = require("../../core/utils");
 const { userretrievesinglerouteModel, filter_user_operation_model } = require("../model/route");
 
 const userretrieveallrouteController = async (req, res, next) => {
-  try {
-    let trainee = await RouteModel.find();
+    try {
+        const page = req.page || 1; 
+        const perPage = 10;
+    let trainee = await RouteModel.find().skip((page - 1) * perPage)
     return res.status(200).json({
       status_code: 200,
       status: true,

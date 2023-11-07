@@ -6,8 +6,11 @@ const {
 } = require("../model/transit");
 
 const userretrievealltransitController = async (req, res, next) => {
-  try {
-    let trainee = await TransitModel.find();
+    try {
+        const page = req.page || 1; 
+        const perPage = 10;
+    let trainee = await TransitModel.find().skip((page - 1) * perPage)  
+    .limit(perPage)
     return res.status(200).json({
       status_code: 200,
       status: true,
