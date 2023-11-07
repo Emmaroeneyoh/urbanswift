@@ -23,7 +23,13 @@ const userretrievesinglerouteModel = async (data, res) => {
 
 const filter_user_operation_model = async (datas, res) => {
     try {
-      const  {query } = datas;
+        const { query } = datas;
+        
+
+        if (query.$and.length == 0) {
+            const userData = await OperationModel.find()
+              return userData;
+          }
    
       const userData = await OperationModel
       .find(query)

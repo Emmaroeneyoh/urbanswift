@@ -21,6 +21,11 @@ const filter_user_agency_model = async (datas, res) => {
     try {
       const  {query } = datas;
    
+        
+      if (query.$and.length == 0) {
+        const userData = await AgencyModel.find()
+          return userData;
+      }
       const userData = await AgencyModel
       .find(query)
      

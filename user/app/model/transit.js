@@ -2,6 +2,7 @@ const { AgencyModel } = require("../../../general/core/db/agency");
 const { AssetModel } = require("../../../general/core/db/asset");
 const { OperationModel } = require("../../../general/core/db/route_operation");
 const { TransitModel } = require("../../../general/core/db/transit");
+const { handleError } = require("../../core/utils");
 
 
 const userretrievesingletransitModel = async (data, res) => {
@@ -28,11 +29,15 @@ const userretrievesingletransitModel = async (data, res) => {
 const filter_user_transit_model = async (datas, res) => {
     try {
       const  {query } = datas;
-   
+      console.log(query.$and)
+        console.log(query.$and.length)
+        
+        if (query.$and.length == 0) {
+            const userData = await TransitModel.find()
+                return userData;
+        }
       const userData = await TransitModel
       .find(query)
-     
-    
     return userData;
     } catch (error) {
       console.log(error);
