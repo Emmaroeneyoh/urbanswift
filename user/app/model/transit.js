@@ -42,21 +42,37 @@ const filter_user_transit_model = async (datas, res) => {
       );
       const stop_days = userData.map((item) => item.operational_day.stop_day);
       const start_days = userData.map((item) => item.operational_day.start_day);
-      const establishment_dates = userData.map((item) => item.establishment_date);
+      const establishment_dates = userData.map(
+        (item) => item.establishment_date
+      );
       const filterdata = {
         transitnames,
         start_times,
         stop_times,
         stop_days,
-        start_days, establishment_dates,  userData 
+        start_days,
+        establishment_dates,
+        userData,
       };
-      return filterdata
+      return filterdata;
     }
-      const transitdata = await TransitModel.find(query);
-      const userData = await TransitModel.find();
-      const establishment_dates = userData.map((item) => item.establishment_date);
-      const transitnames = userData.map((item) => item.name);
-      const filtereddata = {transitdata , establishment_dates , transitnames}
+    const transitdata = await TransitModel.find(query);
+    const userData = await TransitModel.find();
+    const establishment_dates = userData.map((item) => item.establishment_date);
+    const transitnames = userData.map((item) => item.name);
+    const start_times = userData.map(
+      (item) => item.operational_time.start_time
+    );
+    const stop_times = userData.map((item) => item.operational_time.stop_time);
+    const stop_days = userData.map((item) => item.operational_day.stop_day);
+    const start_days = userData.map((item) => item.operational_day.start_day);
+    const filtereddata = {
+      transitdata,
+      establishment_dates,
+      transitnames,
+      start_times,
+      stop_times, stop_days , start_days
+    };
     return filtereddata;
   } catch (error) {
     console.log(error);
