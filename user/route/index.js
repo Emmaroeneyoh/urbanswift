@@ -1,6 +1,6 @@
 const { userretrieveallagencyController, userretrievesingleagencyController, user_filter_agency_controller, useragencynamesearchController } = require("../app/controller/agency");
 const { landingpageController } = require("../app/controller/landingpage");
-const { userretrieveallrouteController, userretrievesinglerouteController, user_filter_operation_controller } = require("../app/controller/route");
+const { userretrieveallrouteController, userretrievesinglerouteController, user_filter_operation_controller, userretrieveoperationController, userretrievesubrouteController } = require("../app/controller/route");
 const { userretrievesingletransitController ,
   userretrievealltransitController,
   user_filter_transit_controller,
@@ -51,6 +51,16 @@ router.post(
     "/retrieve/single/route",
     userretrievesinglerouteValidation,
     userretrievesinglerouteController
+);
+router.post(
+    "/retrieve/operation",
+    userretrievesinglerouteValidation,
+    userretrieveoperationController
+);
+router.post(
+    "/retrieve/subroute",
+    userretrievesinglerouteValidation,
+    userretrievesubrouteController
 );
 
 router.post(

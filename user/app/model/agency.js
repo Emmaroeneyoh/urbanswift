@@ -23,14 +23,19 @@ const filter_user_agency_model = async (datas, res) => {
    
         
       if (query.$and.length == 0) {
-        const userData = await AgencyModel.find()
-          return userData;
+          const userData = await AgencyModel.find()
+          const establishment_dates = userData.map((item) => item.establishment_date);
+          const agencynames = userData.map((item) => item.establishment_date);
+          const filteragency = {agencynames , establishment_dates , userData}
+          return filteragency;
       }
-      const userData = await AgencyModel
-      .find(query)
-     
+      const transitdata = await AgencyModel.find(query);
+      const userData = await AgencyModel.find();
+      const establishment_dates = userData.map((item) => item.establishment_date);
+      const agencynames = userData.map((item) => item.name);
+      const filtereddata = {transitdata , establishment_dates , agencynames}
+    return filtereddata;
     
-    return userData;
     } catch (error) {
       console.log(error);
       handleError(error.message)(res);
