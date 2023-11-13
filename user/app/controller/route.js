@@ -77,7 +77,7 @@ const userretrieveoperationController = async (req, res, next) => {
 };
 const user_filter_operation_controller = async (req, res, next) => {
   try {
-    const {
+    const {routeid,
       high_car_price,
       low_car_price,
       high_seater_16_price,
@@ -90,6 +90,9 @@ const user_filter_operation_controller = async (req, res, next) => {
 
     if (transitid != "") {
       query.$and.push({ transitid: transitid });
+    }
+    if (routeid != "") {
+      query.$and.push({ routeid: routeid });
     }
 
     if (low_car_price != 0) {

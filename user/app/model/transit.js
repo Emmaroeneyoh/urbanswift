@@ -25,6 +25,7 @@ const userretrievesingletransitModel = async (data, res) => {
   }
 };
 
+
 const filter_user_transit_model = async (datas, res) => {
   try {
     const { query } = datas;
