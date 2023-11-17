@@ -13,7 +13,7 @@ const createtransitModel = async (data, res) => {
       stop_day,
       start_day,
       agency,
-      image,  ownership
+      image,  ownership , phone
     } = data;
     console.log(agency)
     const form = await new TransitModel({
@@ -31,7 +31,7 @@ const createtransitModel = async (data, res) => {
         stop_time,
       },
       agency,
-      image,
+      image, phone
     });
 
     const userDetails = await form.save();
@@ -55,7 +55,7 @@ const updatetransitModel = async (data, res) => {
       stop_time,
       stop_day,
       start_day,
-      transitid, ownership
+      transitid, ownership , phone
     } = data;
     const form = await TransitModel.findByIdAndUpdate(transitid, {
       $set: {
@@ -71,7 +71,7 @@ const updatetransitModel = async (data, res) => {
         operational_time: {
           start_time,
           stop_time,
-        },
+        }, phone
       },
     });
     return form;

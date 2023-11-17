@@ -6,6 +6,9 @@ const Transitschema = new schema({
         name: {
             type:String,
         },
+        phone: {
+            type:String,
+        },
         asset: {
             type:Boolean, default : false
     },

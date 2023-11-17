@@ -5,6 +5,7 @@ const createtransitValidation = (req, res, next) => {
   const schema = joi.object({
     adminid: joi.string().required(),
     name: joi.string().required(),
+    phone: joi.string().required(),
     address: joi.string().required(),
     latitude: joi.string().required(),
     longitude: joi.string().required(),
@@ -30,6 +31,7 @@ const updatetransitValidation = (req, res, next) => {
   const schema = joi.object({
     adminid: joi.string().required(),
     name: joi.string().required(),
+    phone: joi.string().required(),
     address: joi.string().required(),
     latitude: joi.string().required(),
     longitude: joi.string().required(),

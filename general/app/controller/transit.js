@@ -23,7 +23,7 @@ const createTransitController = async (req, res, next) => {
     stop_day,
     start_day,
     agency,
-    image, ownership
+    image, ownership , phone
   } = req.body;
   const transitname = name.toLowerCase();
   try {
@@ -49,7 +49,7 @@ const createTransitController = async (req, res, next) => {
       stop_day,
       start_day,
       agency,
-      image,ownership
+      image,ownership , phone
     };
     console.log("setp2");
     let trainee = await createtransitModel(data, res);
@@ -77,7 +77,7 @@ const updatetransitController = async (req, res, next) => {
     stop_time,
     stop_day,
     start_day,
-    transitid, ownership
+    transitid, ownership , phone
   } = req.body;
   const transitname = name.toLowerCase();
   try {
@@ -105,7 +105,7 @@ const updatetransitController = async (req, res, next) => {
       start_time,
       stop_time,
       stop_day,
-      start_day, ownership
+      start_day, ownership , phone
     };
 
     let trainee = await updatetransitModel(data, res);
