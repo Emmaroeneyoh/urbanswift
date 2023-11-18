@@ -6,6 +6,7 @@ const {
   updaterouteModel,
 } = require("../model/route");
 
+
 const createrouteController = async (req, res, next) => {
   const { route } = req.body;
   const routename = route.toLowerCase();

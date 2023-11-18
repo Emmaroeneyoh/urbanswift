@@ -47,10 +47,7 @@ const savetransitController = async (req, res, next) => {
 const retrievetransitController = async (req, res, next) => {
   try {
     const { userid } = req.body;
-    let savedtransit = await SavedtransitModel.find({ userid }).populate({
-      path: "transitid",
-      select: "name address",
-    });
+    let savedtransit = await SavedtransitModel.find({ userid })
     return res.status(200).json({
       status_code: 200,
       status: true,
@@ -62,8 +59,6 @@ const retrievetransitController = async (req, res, next) => {
     handleError(error.message)(res);
   }
 };
-
-
 
 const savesubrouteController = async (req, res, next) => {
   try {
@@ -93,10 +88,7 @@ const savesubrouteController = async (req, res, next) => {
 const retrievesubrouteController = async (req, res, next) => {
   try {
     const { userid } = req.body;
-    let savedsubroute = await SavedsubrouteModel.find({ userid }).populate({
-      path: "subrouteid",
-      select: "main_drive_through",
-    });
+    let savedsubroute = await SavedsubrouteModel.find({ userid })
     return res.status(200).json({
       status_code: 200,
       status: true,
@@ -136,10 +128,7 @@ const saveagencyController = async (req, res, next) => {
 const retrieveagencyController = async (req, res, next) => {
   try {
     const { userid } = req.body;
-    let savedagency = await SavedagencyModel.find({ userid }).populate({
-      path: "agencyid",
-      select: "name",
-    })
+    let savedagency = await SavedagencyModel.find({ userid })
     return res.status(200).json({
       status_code: 200,
       status: true,

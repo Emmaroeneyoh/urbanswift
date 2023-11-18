@@ -7,6 +7,7 @@ const {
   retrieveallAgencyController,
 } = require("../app/controller/agency");
 const { createassetController, updateassetController, deleteassetController, retrievesingleassetController, retrieveallassetController } = require("../app/controller/asset");
+const { dahsboardController } = require("../app/controller/dashboard");
 const { updaterouteController, deleterouteController, createrouteController, retrievesinglerouteController, retrieveallrouteController } = require("../app/controller/route");
 const { createoperationController, updateoperationController, deleteoperationController, retrievesingleoperationController, retrievealloperationController } = require("../app/controller/route_operation");
 const { createsubrouteController, updatesubrouteController, deletesubrouteController, retrievesinglesubrouteController, retrieveallsubrouteController } = require("../app/controller/sub_route");
@@ -231,4 +232,13 @@ router.post(
   retrievealloperationController
 );
 
+
+
+//dahsboard
+router.post(
+  "/dashboard",
+  adminValidation,
+  admin_check_token,
+  dahsboardController
+);
 module.exports = router;
