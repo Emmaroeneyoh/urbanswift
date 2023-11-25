@@ -8,10 +8,11 @@ const landingpageModel = async (data, res) => {
     
         const transits = await TransitModel.find().limit(6).select('name address image')
         const graphtransits = await TransitModel.find().select('rate name')
+        const graphagency = await AgencyModel.find().select('rate name')
         const agency = await AgencyModel.find().limit(6).select('name  image')
         const route = await RouteModel.find().limit(10)
 
-        const landingpage = {transits , agency , route , graphtransits}
+        const landingpage = {transits , agency , route , graphtransits , graphagency}
       return landingpage;
     } catch (error) {
       console.log('error' , error);
