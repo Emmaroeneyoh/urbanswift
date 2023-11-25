@@ -21,6 +21,7 @@ const {
   userretrieveoperationController,
   userretrievesubrouteController,
 } = require("../app/controller/route");
+const { usersubrouteratesecurityController, usersubrouteratenetworkController, usersubrouteratehourController, userratetransitController, userrateagencyController } = require("../app/controller/subroute.rate");
 const {
   userretrievesingletransitController,
   userretrievealltransitController,
@@ -35,6 +36,7 @@ const {
   userretrievesinglerouteValidation,
 } = require("../core/validation/agency");
 const { userValidation } = require("../core/validation/auth");
+const { userratesecurityValidation, userrateneworkValidation, userratehourValidation, userratetransitValidation, userrateagencyValidation } = require("../core/validation/rate");
 const {
   savetransitValidation,
   savesubrouteValidation,
@@ -128,5 +130,37 @@ router.post(
   user_check_token,
   userValidation,
   retrieveagencyController
+);
+
+//rating
+router.post(
+  "/rate/road/security",
+  user_check_token,
+  userratesecurityValidation,
+  usersubrouteratesecurityController
+);
+router.post(
+  "/rate/road/network",
+  user_check_token,
+  userrateneworkValidation,
+  usersubrouteratenetworkController
+);
+router.post(
+  "/rate/road/hour",
+  user_check_token,
+  userratehourValidation,
+  usersubrouteratehourController
+);
+router.post(
+  "/rate/transit",
+  user_check_token,
+  userratetransitValidation,
+  userratetransitController
+);
+router.post(
+  "/rate/agency",
+  user_check_token,
+  userrateagencyValidation,
+  userrateagencyController
 );
 module.exports = router;

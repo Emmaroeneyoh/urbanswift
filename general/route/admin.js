@@ -5,28 +5,85 @@ const {
   updateAgencyController,
   retrievesingleAgencyController,
   retrieveallAgencyController,
+  deleteAgencyController,
 } = require("../app/controller/agency");
-const { createassetController, updateassetController, deleteassetController, retrievesingleassetController, retrieveallassetController } = require("../app/controller/asset");
+const {
+  createassetController,
+  updateassetController,
+  deleteassetController,
+  retrievesingleassetController,
+  retrieveallassetController,
+} = require("../app/controller/asset");
 const { dahsboardController } = require("../app/controller/dashboard");
-const { updaterouteController, deleterouteController, createrouteController, retrievesinglerouteController, retrieveallrouteController } = require("../app/controller/route");
-const { createoperationController, updateoperationController, deleteoperationController, retrievesingleoperationController, retrievealloperationController } = require("../app/controller/route_operation");
-const { createsubrouteController, updatesubrouteController, deletesubrouteController, retrievesinglesubrouteController, retrieveallsubrouteController } = require("../app/controller/sub_route");
-const { createTransitController, updatetransitController, retrievesingletransitController, retrievealltransitController, transitaddagencyController, transitremoveagencyController, transitaddimageController, transitremoveimageController } = require("../app/controller/transit");
+const {
+  updaterouteController,
+  deleterouteController,
+  createrouteController,
+  retrievesinglerouteController,
+  retrieveallrouteController,
+} = require("../app/controller/route");
+const {
+  createoperationController,
+  updateoperationController,
+  deleteoperationController,
+  retrievesingleoperationController,
+  retrievealloperationController,
+} = require("../app/controller/route_operation");
+const {
+  createsubrouteController,
+  updatesubrouteController,
+  deletesubrouteController,
+  retrievesinglesubrouteController,
+  retrieveallsubrouteController,
+} = require("../app/controller/sub_route");
+const {
+  createTransitController,
+  updatetransitController,
+  retrievesingletransitController,
+  retrievealltransitController,
+  transitaddagencyController,
+  transitremoveagencyController,
+  transitaddimageController,
+  transitremoveimageController,
+  deletetransitController,
+} = require("../app/controller/transit");
 const {
   createagencyValidation,
   updateagencyValidation,
   retrieveDeleteagencyValidation,
 } = require("../core/validation/agency");
-const { createassetValidation, updateassetValidation, retrievedeleteassetValidation } = require("../core/validation/asset");
-const { createoperationValidation, updateoperationValidation, retrievedeleteoperationValidation } = require("../core/validation/operation");
-const { createrouteValidation, updaterouteValidation, retrievedeleterouteValidation } = require("../core/validation/route");
-const { createsubrouteValidation, updatesubrouteValidation, retrievedeletesubrouteValidation } = require("../core/validation/subroute");
-const { createtransitValidation, updatetransitValidation, retrievedeletetransitValidation, addremovetransitagencyValidation, addtransitimageValidation, removetransitimageValidation } = require("../core/validation/transit");
+const {
+  createassetValidation,
+  updateassetValidation,
+  retrievedeleteassetValidation,
+} = require("../core/validation/asset");
+const {
+  createoperationValidation,
+  updateoperationValidation,
+  retrievedeleteoperationValidation,
+} = require("../core/validation/operation");
+const {
+  createrouteValidation,
+  updaterouteValidation,
+  retrievedeleterouteValidation,
+} = require("../core/validation/route");
+const {
+  createsubrouteValidation,
+  updatesubrouteValidation,
+  retrievedeletesubrouteValidation,
+} = require("../core/validation/subroute");
+const {
+  createtransitValidation,
+  updatetransitValidation,
+  retrievedeletetransitValidation,
+  addremovetransitagencyValidation,
+  addtransitimageValidation,
+  removetransitimageValidation,
+} = require("../core/validation/transit");
 
 const router = require("express").Router();
 
-
-//agency 
+//agency
 router.post(
   "/create/agency",
   createagencyValidation,
@@ -46,12 +103,18 @@ router.post(
   retrievesingleAgencyController
 );
 router.post(
+  "/delete/agency",
+  retrieveDeleteagencyValidation,
+  admin_check_token,
+ deleteAgencyController
+);
+router.post(
   "/retrieve/all/agency",
   adminValidation,
   admin_check_token,
   retrieveallAgencyController
 );
-//agency 
+//agency
 router.post(
   "/create/transit",
   createtransitValidation,
@@ -69,6 +132,12 @@ router.post(
   retrievedeletetransitValidation,
   admin_check_token,
   retrievesingletransitController
+);
+router.post(
+  "/delete/transit",
+  retrievedeletetransitValidation,
+  admin_check_token,
+  deletetransitController
 );
 router.post(
   "/retrieve/all/transit",
@@ -101,8 +170,7 @@ router.post(
   transitremoveimageController
 );
 
-
-//route 
+//route
 router.post(
   "/create/route",
   createrouteValidation,
@@ -134,7 +202,7 @@ router.post(
   retrieveallrouteController
 );
 
-// subroute 
+// subroute
 router.post(
   "/create/subroute",
   createsubrouteValidation,
@@ -166,8 +234,7 @@ router.post(
   retrieveallsubrouteController
 );
 
-
-// asset 
+// asset
 router.post(
   "/create/asset",
   createassetValidation,
@@ -184,21 +251,20 @@ router.post(
   "/delete/asset",
   retrievedeleteassetValidation,
   admin_check_token,
- deleteassetController
+  deleteassetController
 );
 router.post(
   "/retrieve/single/asset",
   retrievedeleteassetValidation,
   admin_check_token,
- retrievesingleassetController
+  retrievesingleassetController
 );
 router.post(
   "/retrieve/all/asset",
   adminValidation,
   admin_check_token,
- retrieveallassetController
+  retrieveallassetController
 );
-
 
 //operation
 router.post(
@@ -231,8 +297,6 @@ router.post(
   admin_check_token,
   retrievealloperationController
 );
-
-
 
 //dahsboard
 router.post(

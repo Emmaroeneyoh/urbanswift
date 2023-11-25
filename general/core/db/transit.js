@@ -20,7 +20,10 @@ const Transitschema = new schema({
         },
         latitude:{
             type:String
-        },
+    },
+    rate: {
+        type:Number, default : 0
+    },
         longitude:{
             type:String
         },

@@ -9,6 +9,9 @@ const Agencyschema = new schema({
     ownership: {
         type:String,
     },
+    rate: {
+        type:Number, default : 0
+    },
         ceo:{
             type:String
         },

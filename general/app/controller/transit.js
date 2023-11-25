@@ -23,7 +23,9 @@ const createTransitController = async (req, res, next) => {
     stop_day,
     start_day,
     agency,
-    image, ownership , phone
+    image,
+    ownership,
+    phone,
   } = req.body;
   const transitname = name.toLowerCase();
   try {
@@ -49,7 +51,9 @@ const createTransitController = async (req, res, next) => {
       stop_day,
       start_day,
       agency,
-      image,ownership , phone
+      image,
+      ownership,
+      phone,
     };
     console.log("setp2");
     let trainee = await createtransitModel(data, res);
@@ -77,7 +81,9 @@ const updatetransitController = async (req, res, next) => {
     stop_time,
     stop_day,
     start_day,
-    transitid, ownership , phone
+    transitid,
+    ownership,
+    phone,
   } = req.body;
   const transitname = name.toLowerCase();
   try {
@@ -105,7 +111,9 @@ const updatetransitController = async (req, res, next) => {
       start_time,
       stop_time,
       stop_day,
-      start_day, ownership , phone
+      start_day,
+      ownership,
+      phone,
     };
 
     let trainee = await updatetransitModel(data, res);
@@ -153,12 +161,30 @@ const retrievesingletransitController = async (req, res, next) => {
     handleError(error.message)(res);
   }
 };
+const deletetransitController = async (req, res, next) => {
+  const { transitid } = req.body;
+  try {
+    let trainee = await TransitModel.findByIdAndDelete(transitid);
+
+    return res.status(200).json({
+      status_code: 200,
+      status: true,
+      message: "login process successful",
+      data: trainee,
+    });
+  } catch (error) {
+    console.log(error);
+    handleError(error.message)(res);
+  }
+};
 const transitaddagencyController = async (req, res, next) => {
   const { transitid, agencyid } = req.body;
   try {
-    const transit = await TransitModel.findById(transitid)
-    const agency = transit.agency
-    const checkagency = agency.find((x) => { return x.agencyid == agencyid })
+    const transit = await TransitModel.findById(transitid);
+    const agency = transit.agency;
+    const checkagency = agency.find((x) => {
+      return x.agencyid == agencyid;
+    });
     if (checkagency) {
       return res.status(400).json({
         status_code: 400,
@@ -272,5 +298,7 @@ module.exports = {
   retrievesingletransitController,
   updatetransitController,
   transitaddagencyController,
-  transitremoveagencyController, transitaddimageController , transitremoveimageController
+  transitremoveagencyController,
+  transitaddimageController,
+  transitremoveimageController, deletetransitController 
 };
