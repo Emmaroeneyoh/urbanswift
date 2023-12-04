@@ -3,23 +3,20 @@ const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
 const { AdminModel } = require("../../core/db/admin");
 const { adminSignupModel, adminLoginModel } = require("../model/auth");
-const { adminpasswordjwt, appPassword } = require("../../../general/core/utils");
+const {
+  adminpasswordjwt,
+  appPassword,
+} = require("../../../general/core/utils");
 const { handleError } = require("../../core/utils");
 
-
 const adminSignupController = async (req, res, next) => {
-  const {
-    name,
-    email,
-    password,
-  } = req.body;
+  const { name, email, password } = req.body;
   const userEmail = email.toLowerCase();
   try {
     const salt = await bcrypt.genSalt();
     const Harshpassword = await bcrypt.hash(password, salt);
     const customer = await AdminModel.findOne({ email: userEmail });
     if (customer) {
-    
       return res.status(400).json({
         status_code: 400,
         status: false,
@@ -30,9 +27,9 @@ const adminSignupController = async (req, res, next) => {
     }
 
     const data = {
-      userEmail,name,
+      userEmail,
+      name,
       Harshpassword,
-      
     };
 
     let trainee = await adminSignupModel(data, res);
@@ -48,12 +45,11 @@ const adminSignupController = async (req, res, next) => {
   }
 };
 
-
 const adminLoginController = async (req, res, next) => {
   const { email, password } = req.body;
-  const userEmail = email.toLowerCase()
+  const userEmail = email.toLowerCase();
   try {
-    const userDetails = await AdminModel.findOne({email: userEmail });
+    const userDetails = await AdminModel.findOne({ email: userEmail });
     if (!userDetails) {
       return res.status(400).json({
         status_code: 400,
@@ -66,7 +62,6 @@ const adminLoginController = async (req, res, next) => {
 
     const checkPassword = await bcrypt.compare(password, userDetails.password);
     if (!checkPassword) {
-  
       return res.status(400).json({
         status_code: 400,
         status: false,
@@ -94,14 +89,12 @@ const adminLoginController = async (req, res, next) => {
   }
 };
 
-
 const adminNewPasswordLink = async (req, res) => {
   const { email } = req.body;
-  const useremail = email.toLowerCase()
+  const useremail = email.toLowerCase();
   try {
-    const client = await AdminModel.findOne({ email: useremail});
+    const client = await AdminModel.findOne({ email: useremail });
     if (!client) {
-
       return res.status(400).json({
         status_code: 400,
         status: false,
@@ -110,7 +103,7 @@ const adminNewPasswordLink = async (req, res) => {
       });
     }
     //function to generate token
-    const secret = adminpasswordjwt ;
+    const secret = adminpasswordjwt;
     const payload = {
       email: useremail,
       id: client._id,
@@ -120,23 +113,23 @@ const adminNewPasswordLink = async (req, res) => {
     const link = `https://dev-myt-page.netlify.app/reset_password/?token=${token}`;
 
     //start of nodemailer
- var transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: 'emmaroeneyoh@gmail.com',
+    var transporter = nodemailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "emmaroeneyoh@gmail.com",
 
-    pass: appPassword,
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
- });
-      
-  var mailOptions = {
-      from: 'emmaroeneyoh@gmail.com',
+        pass: appPassword,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    var mailOptions = {
+      from: "emmaroeneyoh@gmail.com",
       to: `${email}`,
-      subject: 'Nodemailer Project',
-    text: `${token}`
+      subject: "Nodemailer Project",
+      text: `${token}`,
       // html: data,
     };
 
@@ -144,7 +137,7 @@ const adminNewPasswordLink = async (req, res) => {
       if (error) {
         console.log(error);
       } else {
-        console.log('Email sent: ' + info.response);
+        console.log("Email sent: " + info.response);
       }
     });
     //end of nodemailer
@@ -152,15 +145,12 @@ const adminNewPasswordLink = async (req, res) => {
       status_code: 200,
       status: true,
       message: "mail sent through",
-      
-      
     });
   } catch (error) {
     console.log(error);
     handleError(error.message)(res);
   }
 };
-
 
 const adminresetPassword = async (req, res) => {
   try {
@@ -173,13 +163,12 @@ const adminresetPassword = async (req, res) => {
     const Harshpassword = await bcrypt.hash(password, salt);
     const updateclient = await AdminModel.findByIdAndUpdate(id, {
       $set: {
-        password : Harshpassword
+        password: Harshpassword,
       },
     });
-  //   const datad = { notification: 'you have successfully updated your profile', traineeId }
-  //   await notificationModel(datad)
+    //   const datad = { notification: 'you have successfully updated your profile', traineeId }
+    //   await notificationModel(datad)
     if (!updateclient) {
-           
       return res.status(400).json({
         status_code: 400,
         status: false,
@@ -194,7 +183,7 @@ const adminresetPassword = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-        
+
     return res.status(400).json({
       status_code: 400,
       status: false,
@@ -205,6 +194,25 @@ const adminresetPassword = async (req, res) => {
   }
 };
 
+const adminprofileController = async (req, res, next) => {
+  const { adminid } = req.body;
+  try {
+    const admin = await AdminModel.findById(adminid);
+    return res.status(200).json({
+      status_code: 200,
+      status: true,
+      message: "login process successful",
+      data: admin,
+    });
+  } catch (error) {
+    console.log(error);
+    handleError(error.message)(res);
+  }
+};
+
 module.exports = {
-    adminSignupController  , adminLoginController , adminNewPasswordLink  , adminresetPassword 
-}
+  adminSignupController,
+  adminLoginController,
+  adminNewPasswordLink,
+  adminresetPassword, adminprofileController 
+};
