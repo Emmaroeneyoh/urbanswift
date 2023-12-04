@@ -10,7 +10,7 @@ const userretrievesinglettransitValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+   return handleError(err)(res);
   }
   return next();
 };
@@ -25,7 +25,7 @@ const savetransitValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+   return handleError(err)(res);
   }
   return next();
 };
@@ -40,7 +40,7 @@ const savesubrouteValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+   return handleError(err)(res);
   }
   return next();
 };
@@ -54,7 +54,7 @@ const saveagencyValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+   return handleError(err)(res);
   }
   return next();
 };

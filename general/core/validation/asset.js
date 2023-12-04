@@ -21,7 +21,7 @@ const createassetValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+      return handleError(err)(res);
     }
     return next();
   };
@@ -44,7 +44,7 @@ const updateassetValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+      return handleError(err)(res);
     }
     return next();
   };
@@ -58,7 +58,7 @@ const retrievedeleteassetValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+      return handleError(err)(res);
     }
     return next();
 };

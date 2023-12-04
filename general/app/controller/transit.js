@@ -233,6 +233,7 @@ const transitremoveagencyController = async (req, res, next) => {
     handleError(error.message)(res);
   }
 };
+
 const transitaddimageController = async (req, res, next) => {
   const { transitid, url } = req.body;
   try {

@@ -13,7 +13,7 @@ const createrouteValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+      return handleError(err)(res);
     }
     return next();
   };
@@ -29,7 +29,7 @@ const retrievedeleterouteValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+      return handleError(err)(res);
     }
     return next();
   };
@@ -46,7 +46,7 @@ const updaterouteValidation = (req, res, next) => {
       let err = error.details[0].message;
       // let errlen = err.split(' ')
       // console.log('this is length ' , errlen.length)
-      handleError(err)(res);
+      return handleError(err)(res);
     }
     return next();
   };

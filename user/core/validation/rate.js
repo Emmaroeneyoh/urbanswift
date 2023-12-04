@@ -12,7 +12,7 @@ const userratesecurityValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -27,7 +27,7 @@ const userrateneworkValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -42,7 +42,7 @@ const userratehourValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -57,7 +57,7 @@ const userratetransitValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
@@ -72,7 +72,7 @@ const userrateagencyValidation = (req, res, next) => {
     let err = error.details[0].message;
     // let errlen = err.split(' ')
     // console.log('this is length ' , errlen.length)
-    handleError(err)(res);
+    return handleError(err)(res);
   }
   return next();
 };
