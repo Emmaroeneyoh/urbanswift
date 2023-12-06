@@ -2,12 +2,29 @@ const { SavedagencyModel } = require("../../core/db/saved_agency");
 const { SavedsubrouteModel } = require("../../core/db/saved_subroute");
 const { SavedtransitModel } = require("../../core/db/saved_transits");
 const { handleError } = require("../../core/utils");
-const { landingpageModel } = require("../model/landingpage");
+const { landingpageModel, userdashboardModel } = require("../model/landingpage");
 
 const landingpageController = async (req, res, next) => {
   try {
     const data = "time";
     let trainee = await landingpageModel(data, res);
+    return res.status(200).json({
+      status_code: 200,
+      status: true,
+      message: "login process successful",
+      data: trainee,
+    });
+  } catch (error) {
+    console.log(error);
+    handleError(error.message)(res);
+  }
+};
+
+
+const userdashboardController = async (req, res, next) => {
+  try {
+    const data = "time";
+    let trainee = await userdashboardModel(data, res);
     return res.status(200).json({
       status_code: 200,
       status: true,
@@ -148,5 +165,5 @@ module.exports = {
   retrievesubrouteController,
   savesubrouteController,
   retrieveagencyController,
-  saveagencyController,
+  saveagencyController, userdashboardController
 };

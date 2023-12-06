@@ -13,6 +13,7 @@ const {
   retrievesubrouteController,
   saveagencyController,
   retrieveagencyController,
+  userdashboardController,
 } = require("../app/controller/landingpage");
 const {
   userretrieveallrouteController,
@@ -46,6 +47,7 @@ const {
 const router = require("express").Router();
 
 router.post("/landingpage", landingpageController);
+router.post("/dashboard", userdashboardController);
 
 //for transit
 router.post("/retrieve/all/transit", userretrievealltransitController);
