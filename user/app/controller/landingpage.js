@@ -64,7 +64,7 @@ const savetransitController = async (req, res, next) => {
 const retrievetransitController = async (req, res, next) => {
   try {
     const { userid } = req.body;
-    let savedtransit = await SavedtransitModel.find({ userid })
+    let savedtransit = await SavedtransitModel.find({ userid }).populate('transitid')
     return res.status(200).json({
       status_code: 200,
       status: true,
@@ -105,7 +105,7 @@ const savesubrouteController = async (req, res, next) => {
 const retrievesubrouteController = async (req, res, next) => {
   try {
     const { userid } = req.body;
-    let savedsubroute = await SavedsubrouteModel.find({ userid })
+    let savedsubroute = await SavedsubrouteModel.find({ userid }).populate('subrouteid')
     return res.status(200).json({
       status_code: 200,
       status: true,
@@ -145,7 +145,7 @@ const saveagencyController = async (req, res, next) => {
 const retrieveagencyController = async (req, res, next) => {
   try {
     const { userid } = req.body;
-    let savedagency = await SavedagencyModel.find({ userid })
+    let savedagency = await SavedagencyModel.find({ userid }).populate('agencyid')
     return res.status(200).json({
       status_code: 200,
       status: true,
