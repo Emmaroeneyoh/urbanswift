@@ -25,7 +25,7 @@ const filter_user_agency_model = async (datas, res) => {
       if (query.$and.length == 0) {
           const userData = await AgencyModel.find()
           const establishment_dates = userData.map((item) => item.establishment_date);
-          const agencynames = userData.map((item) => item.establishment_date);
+          const agencynames = userData.map((item) => item.name);
           const filteragency = {agencynames , establishment_dates , userData}
           return filteragency;
       }
