@@ -22,7 +22,13 @@ const {
   userretrieveoperationController,
   userretrievesubrouteController,
 } = require("../app/controller/route");
-const { usersubrouteratesecurityController, usersubrouteratenetworkController, usersubrouteratehourController, userratetransitController, userrateagencyController } = require("../app/controller/subroute.rate");
+const {
+  usersubrouteratesecurityController,
+  usersubrouteratenetworkController,
+  usersubrouteratehourController,
+  userratetransitController,
+  userrateagencyController,
+} = require("../app/controller/subroute.rate");
 const {
   userretrievesingletransitController,
   userretrievealltransitController,
@@ -37,7 +43,13 @@ const {
   userretrievesinglerouteValidation,
 } = require("../core/validation/agency");
 const { userValidation } = require("../core/validation/auth");
-const { userratesecurityValidation, userrateneworkValidation, userratehourValidation, userratetransitValidation, userrateagencyValidation } = require("../core/validation/rate");
+const {
+  userratesecurityValidation,
+  userrateneworkValidation,
+  userratehourValidation,
+  userratetransitValidation,
+  userrateagencyValidation,
+} = require("../core/validation/rate");
 const {
   savetransitValidation,
   savesubrouteValidation,

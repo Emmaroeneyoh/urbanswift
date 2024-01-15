@@ -29,7 +29,7 @@ const filter_user_operation_model = async (datas, res) => {
         if (query.$and.length == 0) {
             const userData = await OperationModel.find().populate({
               path: "transitid",
-              select: "name address",
+              select: "name address latitude longitude",
           })
               return userData;
           }
@@ -37,7 +37,7 @@ const filter_user_operation_model = async (datas, res) => {
       const userData = await OperationModel
       .find(query).populate({
         path: "transitid",
-        select: "name address",
+        select: "name address latitude longitude",
     })
      
     
